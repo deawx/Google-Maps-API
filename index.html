@@ -2,35 +2,27 @@
 	<head>
 		<header>Google Maps API (Distance Matrix) Project</header>
 		<link rel="stylesheet" href="index.css" type="text/css"/>
+		<script src="index.js" type="text/javascript"></script>
 	</head>
 	<body>
-		<div id = "map">
-			<!-- defer sync waits for browser to render fully while api loads (ex. <script async defer src="">)-->
-			<script>
-				var url = "https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&">
-				// origins=Washington,DC&destinations=New+York+City,NY&key=AIzaSyDAdOqSbH695DFBVMF7JSmPKSx0zWE8CAM">
-			var xhttp = new XMLHttpRequest();
-			var prompt = ("Enter a City, State", "New York, NY").split(", ");
-			var key = "AIzaSyDAdOqSbH695DFBVMF7JSmPKSx0zWE8CAM";
-			// hardcode origin for now
-			var origin_city = "Los Angeles";
-			var origin_state = "CA";
-			var dest_city = undefined;
-			var dest_state = undefined;
-			if (prompt == null) alert("Invalid input, please retry.");
-			else {
-				city = prompt[0].replace(/ +/g, "+");
-				state = prompt[1];
-				alert("City: " + city + " state: " + state);
-			}
-			xhttp.onreadystatechange = function() {
-				if (this.readyState == 4 && this.status == 200) {
-					alert(this.responseText);
-				}
-			};
-			xhttp.open("GET", url+"origins="+origin_city+","+origin_state+"&destinations="+"dest_city"+","+"dest_state"+key, true);
-			xhttp.send();
-			</script>
+		<div id="right-panel">
+			<div id="inputs">
+				<!-- <pre> tag is loaded as is without any style -->
+				<pre>
+var origin1 = {lat: 55.930, lng: -3.118};
+var origin2 = 'Greenwich, England';
+var destinationA = 'Stockholm, Sweden';
+var destinationB = {lat: 50.087, lng: 14.421};
+				</pre>
+			</div>
+			<div>
+				<strong>Results</strong>
+			</div>
+			<div id="output"></div>
 		</div>
+		<div id="map"></div>
+		<!-- async defer waits for browser to render fully while api loads -->
+		<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDAdOqSbH695DFBVMF7JSmPKSx0zWE8CAM&callback=initMap">
+		</script>
 	</body>
 </html>
