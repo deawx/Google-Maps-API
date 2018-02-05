@@ -1,6 +1,6 @@
 var city = ', San Francisco, CA';
-var origins = [document.getElementById("origin").value + ' Station' + city];
-var destinations = [document.getElementById("dest").value + city];
+var origins = ['Embarcadero Station' + city];
+var destinations = ['Golden Gate Bridge' + city];
 
 var query = {
 	origins: origins,
@@ -16,10 +16,9 @@ var bounds;
 var panning = false;
 
 function initialize() {
-	alert("meow");
 	var mapOptions = {
 		zoom: 12,
-		center: new google.maps.LatLng(37.78, 122.42),
+		center: new google.maps.LatLng(37.78, -122.42),
 		mapTypeId: google.maps.MapTypeId.ROADMAP
 	}
 	map = new google.maps.Map(document.getElementById("map"), mapOptions);
@@ -33,36 +32,46 @@ function initialize() {
 			panning = false;
 		}
 	});
+	showRoute();
 	updateMatrix();
 }
 
+function updateMatrix() {
+	dms.getDistanceMatrix(query, function(response, status) {
+		if (status == "OK") {
+			//populateTable
+			console.log("huh");
+		}
+	});
+}
 
+// function updateOrigin() {
+// 	origins = [document.getElementById("origin").value + ' Station' + city];
+// 	updateMatrix();
+// 	showRoute();
+// }
 
-function updateOrigin() {
-	origins = [document.getElementById("origin").value + ' Station' + city];
+// function updateDest() {
+// 	destinations = [document.getElementById("dest").value + city];
+// 	console.log(destinations);
+// 	updateMatrix();
+// 	showRoute();
+// }
+
+function getRouteFunction() {
+	routeQuery = {
+		origin: [document.getElementById("origin").value + ' Station' + city],
+		destination: [document.getElementById("dest").value + city],
+		travelMode: query.travelMode,
+		unitSystem: query.unitSystem
+	};
 	showRoute();
 }
 
-function updateDest() {
-	destinations = [document.getElementById("dest").value + city];
-	console.log(destinations);
-		showRoute();
-}
-
-function getRouteFunction() {
-	return function() {
-		routeQuery = {
-			origin: origins,
-			destination: destinations,
-			travelMode: query.travelMode,
-			unitSystem: query.unitSystem
-		};
-		showRoute();
-	}
-}
-
 function showRoute() {
+	console.log("HI " + query);
 	dirService.route(routeQuery, function(result, status) {
+		console.log(status);
 		if (status == google.maps.DirectionsStatus.OK) {
 			dirRenderer.setDirections(result);
 			bounds = new google.maps.LatLngBounds();
@@ -71,15 +80,6 @@ function showRoute() {
 			bounds.extend(result.routes[0].overview_path[k-1]);
 			panning = true;
 			map.panTo(bounds.getCenter());
-		}
-	});
-}
-
-function updateMatrix() {
-	dms.getDistanceMatrix(query, function(response, status) {
-		if (status == "OK") {
-			//populateTable
-			console.log("huh");
 		}
 	});
 }
@@ -93,7 +93,7 @@ function updateMode() {
 			query.travelMode = google.maps.TravelMode.WALKING;
 			break;
 	}
-	updateMatrix();
+	// updateMatrix();
 	if (routeQuery) {
 		routeQuery.travelMode = query.travelMode;
 		showRoute();
@@ -109,5 +109,5 @@ function updateUnits() {
 			query.unitSystem = google.maps.UnitSystem.IMPERIAL;
 			break;
 	}
-	updateMatrix();
+	// updateMatrix();
 }

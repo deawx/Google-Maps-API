@@ -2,6 +2,10 @@ body {
 	font-family: sans-serif, Helvetica;
 }
 
+table {
+	width: 80vw;
+}
+
 /*container mainly for positioning controls*/
 #container {
     position: absolute;
@@ -17,14 +21,11 @@ body {
     border: 1px solid grey;
 }
 
-#controls {
-    top: 35vw;
-    right: 21vw;
-    position: absolute;
-    text-align: right;
-}
-
 #location {
     position: absolute;
     top: 72vh;
+}
+
+.right {
+	text-align: right;
 }

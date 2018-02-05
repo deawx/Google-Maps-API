@@ -11,24 +11,19 @@
 	<body onload="initialize()">
 		<div id="container">
 			<div id="map"></div>
-			<div id="controls">
-				<!-- select tag is a drop-down list, with the selected attr as the pre-selected option on page load -->
-				<select id="mode" onChange="updateMode()">
-					<option value="driving">Driving</option>
-					<option value="walking" selected="selected">Walking</option>
-				</select><br/>
-				<select id="units" onChange="updateUnits()">
-					<option value="km">Kilometers</option>
-					<option value="mi" selected="selected">Miles</option>
-				</select>
-			</div>
 			<!-- <table id="matrix"></table> -->
 			<div id="location">
 				<table><tr>
 					<td>BART Station:</td>
 					<td>Attraction:</td>
+					<td class="right">
+						<select id="mode" onChange="updateMode()">
+							<option value="driving">Driving</option>
+							<option value="walking" selected="selected">Walking</option>
+						</select><br/>
+					</td>
 				</tr><tr>
-					<td><select id="origin" onChange="updateOrigin()">
+					<td><select id="origin" onChange="getRouteFunction()">
 						<option value="Embarcadero" selected="selected">Embarcadero</option>
 						<option value="Montgomery St">Montgomery St</option>
 						<option value="Powell St">Powell St</option>
@@ -39,8 +34,8 @@
 						<option value="Balboa Park">Balboa Park</option>
 						<option value="Daly City">Daly City</option>
 					</select></td>
-					<td><select id="dest" onChange="updateDest()">
-						<option value="Golden Gate Bridge">Golden Gate Bridge</option>
+					<td><select id="dest" onChange="getRouteFunction()">
+						<option value="Golden Gate Bridge" selected="selected">Golden Gate Bridge</option>
 						<option value="Pier 39">Pier 39</option>
 						<option value="Fisherman's Wharf">Fisherman's Wharf</option>
 						<option value="Alcatraz">Alcatraz</option>
@@ -54,6 +49,12 @@
 						<option value="Ghirardelli Square">Ghirardelli Square</option>
 						<option value="De Young Museum">De Young Museum</option>
 					</select></td>
+					<td class="right">
+						<select id="units" onChange="updateUnits()">
+							<option value="km">Kilometers</option>
+							<option value="mi" selected="selected">Miles</option>
+						</select>
+					</td>
 				</tr>
 			</div>
 		</div>
