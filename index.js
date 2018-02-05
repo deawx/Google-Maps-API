@@ -37,10 +37,11 @@ function initialize() {
 }
 
 function updateMatrix() {
+	console.log(" HI : ", query.origins);
 	dms.getDistanceMatrix(query, function(response, status) {
 		if (status == "OK") {
-			//populateTable
-			console.log("huh");
+			document.getElementById("details").innerHTML = "Distance: " + response.rows[0].elements[0].distance.text + ", duration: " + response.rows[0].elements[0].duration.text;
+			console.log(response);
 		}
 	});
 }

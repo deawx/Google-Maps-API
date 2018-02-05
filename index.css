@@ -26,6 +26,10 @@ table {
     top: 72vh;
 }
 
+#details {
+	padding-top: 5vw;
+}
+
 .right {
 	text-align: right;
 }

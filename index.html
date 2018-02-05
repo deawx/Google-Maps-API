@@ -12,50 +12,55 @@
 		<div id="container">
 			<div id="map"></div>
 			<!-- <table id="matrix"></table> -->
-			<div id="location">
-				<table><tr>
-					<td>BART Station:</td>
-					<td>Attraction:</td>
-					<td class="right">
-						<select id="mode" onChange="updateMode()">
-							<option value="driving">Driving</option>
-							<option value="walking" selected="selected">Walking</option>
-						</select><br/>
-					</td>
-				</tr><tr>
-					<td><select id="origin" onChange="getRouteFunction()">
-						<option value="Embarcadero" selected="selected">Embarcadero</option>
-						<option value="Montgomery St">Montgomery St</option>
-						<option value="Powell St">Powell St</option>
-						<option value="Civic Center/UN Plaza">Civic Center/UN Plaza</option>
-						<option value="16th St Mission">16th St Mission</option>
-						<option value="24th St Mission">24th St Mission</option>
-						<option value="Glen Park">Glen Park</option>
-						<option value="Balboa Park">Balboa Park</option>
-						<option value="Daly City">Daly City</option>
-					</select></td>
-					<td><select id="dest" onChange="getRouteFunction()">
-						<option value="Golden Gate Bridge" selected="selected">Golden Gate Bridge</option>
-						<option value="Pier 39">Pier 39</option>
-						<option value="Fisherman's Wharf">Fisherman's Wharf</option>
-						<option value="Alcatraz">Alcatraz</option>
-						<option value="Palace of Fine Arts Theatre">Palace of Fine Arts Theatre</option>
-						<option value="Coit Tower">Coit Tower</option>
-						<option value="Twin Peaks">Twin Peaks</option>
-						<option value="Presidio">Presidio</option>
-						<option value="Chinatown">Chinatown</option>
-						<option value="California Academy of Sciences">California Academy of Sciences</option>
-						<option value="Japanese Tea Garden">Japanese Tea Garden</option>
-						<option value="Ghirardelli Square">Ghirardelli Square</option>
-						<option value="De Young Museum">De Young Museum</option>
-					</select></td>
-					<td class="right">
-						<select id="units" onChange="updateUnits()">
-							<option value="km">Kilometers</option>
-							<option value="mi" selected="selected">Miles</option>
-						</select>
-					</td>
-				</tr>
+			<div id="controls">
+				<div id="location">
+					<table><tr>
+						<td>BART Station:</td>
+						<td>Attraction:</td>
+						<td class="right">
+							<select id="mode" onChange="updateMode()">
+								<option value="driving">Driving</option>
+								<option value="walking" selected="selected">Walking</option>
+							</select><br/>
+						</td>
+						</tr><tr>
+							<td><select id="origin" onChange="getRouteFunction()">
+								<option value="Embarcadero" selected="selected">Embarcadero</option>
+								<option value="Montgomery St">Montgomery St</option>
+								<option value="Powell St">Powell St</option>
+								<option value="Civic Center/UN Plaza">Civic Center/UN Plaza</option>
+								<option value="16th St Mission">16th St Mission</option>
+								<option value="24th St Mission">24th St Mission</option>
+								<option value="Glen Park">Glen Park</option>
+								<option value="Balboa Park">Balboa Park</option>
+								<option value="Daly City">Daly City</option>
+							</select></td>
+							<td><select id="dest" onChange="getRouteFunction()">
+								<option value="Golden Gate Bridge" selected="selected">Golden Gate Bridge</option>
+								<option value="Pier 39">Pier 39</option>
+								<option value="Fisherman's Wharf">Fisherman's Wharf</option>
+								<option value="Alcatraz">Alcatraz</option>
+								<option value="Palace of Fine Arts Theatre">Palace of Fine Arts Theatre</option>
+								<option value="Coit Tower">Coit Tower</option>
+								<option value="Twin Peaks">Twin Peaks</option>
+								<option value="Presidio">Presidio</option>
+								<option value="Chinatown">Chinatown</option>
+								<option value="California Academy of Sciences">California Academy of Sciences</option>
+								<option value="Japanese Tea Garden">Japanese Tea Garden</option>
+								<option value="Ghirardelli Square">Ghirardelli Square</option>
+								<option value="De Young Museum">De Young Museum</option>
+							</select></td>
+							<td class="right">
+								<select id="units" onChange="updateUnits()">
+									<option value="km">Kilometers</option>
+									<option value="mi" selected="selected">Miles</option>
+								</select>
+							</td>
+						</tr>
+					</table>
+				<div id="details">
+				</div>
+				</div>
 			</div>
 		</div>
 	</body>
