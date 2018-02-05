@@ -1,6 +1,6 @@
-var city = ', San Francisco, CA';
-var origins = ['Embarcadero Station' + city];
-var destinations = ['Golden Gate Bridge' + city];
+var city = ", San Francisco, CA";
+var origins = ["Embarcadero Station" + city];
+var destinations = ["Golden Gate Bridge" + city];
 
 var query = {
 	origins: origins,
@@ -32,12 +32,13 @@ function initialize() {
 			panning = false;
 		}
 	});
-	showRoute();
+	getRouteFunction();
 	updateMatrix();
 }
 
 function updateMatrix() {
-	console.log(" HI : ", query.origins);
+	query.origins = [routeQuery.origin];
+	query.destinations = [routeQuery.destination];
 	dms.getDistanceMatrix(query, function(response, status) {
 		if (status == "OK") {
 			document.getElementById("details").innerHTML = "Distance: " + response.rows[0].elements[0].distance.text + ", duration: " + response.rows[0].elements[0].duration.text;
@@ -46,23 +47,11 @@ function updateMatrix() {
 	});
 }
 
-// function updateOrigin() {
-// 	origins = [document.getElementById("origin").value + ' Station' + city];
-// 	updateMatrix();
-// 	showRoute();
-// }
-
-// function updateDest() {
-// 	destinations = [document.getElementById("dest").value + city];
-// 	console.log(destinations);
-// 	updateMatrix();
-// 	showRoute();
-// }
-
 function getRouteFunction() {
 	routeQuery = {
-		origin: [document.getElementById("origin").value + ' Station' + city],
-		destination: [document.getElementById("dest").value + city],
+		// ORIGIN IS NOT AN ARRAY IN ROUTEQUERY!!, unlike in query
+		origin: document.getElementById("ori").value + " Station" + city,
+		destination: document.getElementById("dest").value + city,
 		travelMode: query.travelMode,
 		unitSystem: query.unitSystem
 	};
@@ -70,9 +59,7 @@ function getRouteFunction() {
 }
 
 function showRoute() {
-	console.log("HI " + query);
 	dirService.route(routeQuery, function(result, status) {
-		console.log(status);
 		if (status == google.maps.DirectionsStatus.OK) {
 			dirRenderer.setDirections(result);
 			bounds = new google.maps.LatLngBounds();
@@ -83,6 +70,7 @@ function showRoute() {
 			map.panTo(bounds.getCenter());
 		}
 	});
+	updateMatrix();
 }
 
 function updateMode() {
@@ -94,7 +82,7 @@ function updateMode() {
 			query.travelMode = google.maps.TravelMode.WALKING;
 			break;
 	}
-	// updateMatrix();
+	updateMatrix();
 	if (routeQuery) {
 		routeQuery.travelMode = query.travelMode;
 		showRoute();
@@ -110,5 +98,5 @@ function updateUnits() {
 			query.unitSystem = google.maps.UnitSystem.IMPERIAL;
 			break;
 	}
-	// updateMatrix();
+	updateMatrix();
 }
